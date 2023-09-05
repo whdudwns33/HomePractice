@@ -17,7 +17,7 @@ public class Main {
 
         System.out.println("조리시간(분) :");
         int time = sc.nextInt();
-        int h = time / 60;
+        int h = (time / 60);
         int m = time % 60;
 
         System.out.println((H + h) % 24 + " " + (M + m));   // 24시가 되면 0시로 초기화
