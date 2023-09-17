@@ -1,5 +1,10 @@
 //package miniProject;
-//
+//회원가입(이용자) 클래스
+//이용자의 등급 결정을 위한 사용액 메서드 혹은 클래스 필요.
+//이용자 테이블에 주문한 음식의 비용을 더해가는 컬럼 추가 필요할 듯. TOTAL_PRICE
+//TOTAL_PRICE에 맞춰 등급 표시 -> 메인 클래스에서 구현?
+
+
 //public class Test {
 //    package com.kh.jdbc.dao;
 //
@@ -13,6 +18,7 @@
 //import java.util.List;
 //import java.util.Scanner;
 //
+
 //    public class CustomerDAO {
 //        Connection conn = null;
 //        Statement stmt = null;
@@ -38,8 +44,10 @@
 //                    int BIRTH = rs.getInt("BIRTH");
 //                    String EMAIL = rs.getString("EMAIL");
 //                    int MONTHFEE = rs.getInt("MONTHFEE");
+//                    //TOTAL_PRICE 추가 필요
+//                    int TOTAL_PRICE = rs.getInt("TOTAL_PRICE");
 //                    CustomerVO vo = new CustomerVO(USER_ID, USER_PW, USER_NAME, PHONE,
-//                    ADDR,BIRTH, EMAIL, MONTHFEE); // 객체 생성?
+//                    ADDR,BIRTH, EMAIL, MONTHFEE, TOTAL_PRICE); // 객체 생성?
 //                    list.add(vo);
 //                }
 //                Common.close(rs); // 연결과 역순으로 해제
@@ -64,6 +72,7 @@
 //                System.out.println("생년월일 : " + e.getBIRTH());
 //                System.out.println("이메일 : " + e.getEMAIL());
 //                System.out.println("월정액 : " + e.getMONTHFEE());
+//                System.out.println("등급 : " + e.getTOTAL_PRICE());
 //                System.out.println("======================================");
 //            }
 //        }
@@ -111,7 +120,8 @@
 
 
 //            // 회원가입된 정보 추가
-//            String sql = "INSERT INTO CUSTOMER(CS_ID, CS_NAME, PHONE) VALUES (?, ?, ?)";
+//            String sql = "INSERT INTO CUSTOMER(USER_ID, USER_PW, USER_NAME, ) VALUES (?, ?, ?
+//            )";
 //
 
 
@@ -226,19 +236,50 @@
 //            }
 //            return isName;
 //        }
+//
 
-//          //???
-//        public String inputID() {
-//            String id;
-//            while (true){
-//                //포인트 번호 4자리 입력
-//                System.out.print("전화번호 뒷 4자리를 입력해 주세요 : ");
-//                id = sc.next();
-//                boolean isID =  isCid(id);
-//                if(isID) break;
-//                System.out.println("잘못 입력하셨습니다. 다시 입력 해주세요");
-//            }
-//            return id;
+
+            //  여기를 잘 모르겠음
+//        public CustomerVO customerTOTAL_PRINCE(String val) {
+//                CustomerVO vo = null;
+//                try {
+//                conn = Common.getConnection();
+//                stmt = conn.createStatement();
+//                String sql = "SELECT * FROM CUSTOMER WHERE USER_ID = '" + val + "'";
+//
+//                rs = stmt.executeQuery(sql);
+//                while (rs.next()) {
+//                String cid = rs.getString("CS_ID");
+//                String cname = rs.getString("CS_NAME");
+//                String phone = rs.getString("PHONE");
+//                int totalPoint = rs.getInt("TOTAL_POINT");
+//                vo = new CustomerVO(cid, cname, phone, totalPoint); // 하나의 행(레코드)에 대한 정보 저장을 위한 객체 생성
+//                }
+//
+//                } catch (Exception e) {
+//                e.printStackTrace();
+//                }
+//                Common.close(rs);
+//                Common.close(stmt);
+//                Common.close(conn);
+//                return vo;
 //        }
+//        public void customerPointPrint(CustomerVO vo) {
+//                if (vo == null) {
+//                    System.out.println("해당하는 고객 정보가 없습니다.");
+//                    return;
+//                }
+//                System.out.println("------------------------------------------------------------------------");
+//                System.out.println("회원 아이디 : " + vo.getCid());
+//                System.out.println("회원 이름 : " + vo.getCname());
+//                System.out.println("회원 전화번호 : " + vo.getPhone());
+//                System.out.println("누적 포인트 : " + vo.getTotalPoint());
+//                System.out.println("------------------------------------------------------------------------");
+//          }
+
+
+
+//
+//
 //    }
 //}
