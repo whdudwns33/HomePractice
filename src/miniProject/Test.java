@@ -80,7 +80,7 @@
 //            System.out.println("회원 아이디 : " + e.getUSER_ID());
 //            System.out.println("회원 비밀번호 : " + e.getUSER_PW());
 //            System.out.println("회원 이름 : " + e.getUSER_NAME());
-//            System.out.println("회원 전화번호 : " + e.getPHONE());
+//            System.out.println("전화번호 : " + e.getPHONE());
 //            System.out.println("주소 : " + e.getADDR());
 //            System.out.println("생년월일 : " + e.getBIRTH());
 //            System.out.println("이메일 : " + e.getEMAIL());
@@ -93,15 +93,28 @@
 //
 //        public void customerInsert () {
 //            System.out.println("----------------------------회원 가입창-------------------------------------");
-//            System.out.print("회원 아이디(전화번호 뒷자리) : ");
-//            int cid = sc.nextInt();
+//            System.out.print("회원 아이디 : ");
+//            int USER_ID = sc.nextInt();
+//            System.out.print("회원 비밀번호 : ");
+//            int USER_PW = sc.nextInt();
 //            System.out.print("회원 이름 : ");
-//            String cname = sc.next();
+//            String USER_NAME = sc.next();
 //            System.out.print("전화번호 : ");
-//            String phone = sc.next();
-//            String cid = phone.substring(9);
+//            String PHONE = sc.nextInt();
+//            System.out.print("주소 : ");
+//            String ADDR = sc.next();
+//            System.out.print("생년월일 : ");
+//            String USER_NAME = sc.next();
+//            System.out.print("월정액 [1]5000 [2]15000 : ");
+//            String MONTHFEE = sc.nextInt();
+//
+
+
+//            // 회원가입된 정보 추가
 //            String sql = "INSERT INTO CUSTOMER(CS_ID, CS_NAME, PHONE) VALUES (?, ?, ?)";
 //
+
+
 //            try {
 //                conn = Common.getConnection();
 //                pStmt = conn.prepareStatement(sql);
@@ -118,22 +131,21 @@
 //        }
 //
 //        public void customerUpdate () {
-//            System.out.print("변경할 회원의 전화번호 뒷자리를 입력하세요 : ");
-//            String csid = sc.next();
-//            System.out.print("변경할 이름을 입력하세요 : ");
-//            String cname = sc.next();
+//            System.out.print("변경할 회원의 아이디를 입력하세요 : ");
+//            String USER_ID = sc.next();
+//            System.out.print("변경할 주소를 입력하세요 : ");
+//            String ADDR = sc.next();
 //            System.out.print("변경할 전화번호를 입력하세요 : ");
-//            String phone = sc.next();
+//            String PHONE = sc.next();
 //
-//
-//            String sql = "UPDATE CUSTOMER SET CS_NAME = ?, PHONE = ? WHERE CS_ID = ?";
+//            String sql = "UPDATE CUSTOMER SET ADDR = ?, PHONE = ? WHERE USER_ID = ?";
 //
 //            try {
 //                conn = Common.getConnection();
 //                pStmt = conn.prepareStatement(sql);
-//                pStmt.setString(1, cname);
-//                pStmt.setString(2, phone);
-//                pStmt.setString(3, csid);
+//                pStmt.setString(1, ADDR);
+//                pStmt.setString(2, PHONE);
+//                pStmt.setString(3, USER_ID);
 //                pStmt.executeUpdate();
 //            } catch (Exception e) {
 //                e.printStackTrace();
@@ -144,13 +156,13 @@
 //        }
 //
 //        public void customerDelete() {
-//            System.out.print("삭제할 회원의 아이디를 입력 하세요 (전화번호 뒷자리) : ");
+//            System.out.print("삭제(탈퇴)할 회원의 아이디를 입력 하세요  : ");
 //            String csid = sc.next();
-//            String sql = "DELETE FROM CUSTOMER WHERE CS_ID = ?";
+//            String sql = "DELETE FROM CUSTOMER WHERE USER_ID = ?";
 //            try {
 //                conn = Common.getConnection();
 //                pStmt = conn.prepareStatement(sql);
-//                pStmt.setString(1, csid);
+//                pStmt.setString(1, USER_ID);
 //                pStmt.executeUpdate();
 //
 //            } catch (Exception e) {
@@ -161,25 +173,7 @@
 //
 //        }
 //
-//        public void pointUpdate(int price, int t_point,String id) {
 //
-//            int point = price/100;
-//            t_point +=point;
-//            String sql = "UPDATE CUSTOMER SET TOTAL_POINT = ? WHERE CS_ID = ?";
-//
-//            try {
-//                conn = Common.getConnection();
-//                pStmt = conn.prepareStatement(sql);
-//                pStmt.setInt(1, t_point);
-//                pStmt.setString(2, id);
-//
-//                pStmt.executeUpdate();
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//            Common.close(pStmt);
-//            Common.close(conn);
-//        }
 //
 //        public boolean isCid(String id) { // 입력된 아이디와 일치하는 레코드가 고객 테이블에 존재하는지 확인하는 메소드
 //            boolean isCid = false;
@@ -207,14 +201,14 @@
 //            return isCid;
 //        }
 //
-//        public boolean isName(String cName) { // 입력된 이름과 일치하는 레코드가 고객 테이블에 존재하는지 확인하는 메소드
-//            boolean isName = false;
+//        public boolean isName(String USER_ID) { // 입력된 아이디와 일치하는 레코드가 고객 테이블에 존재하는지 확인하는 메소드
+//            boolean isUSER_ID = false;
 //            try {
 //                conn = Common.getConnection();
-//                String query = "SELECT COUNT(*) FROM CUSTOMER WHERE CS_NAME = ? ";
+//                String query = "SELECT COUNT(*) FROM CUSTOMER WHERE USER_ID = ? ";
 //                // COUNT(*) 일치하는 레코드가 있는지 확인! 만약 반환된 값이 0보다 크면, 일치하는 레코드가 존재한다는 것을 의미
 //                pStmt = conn.prepareStatement(query);
-//                pStmt.setString(1, cName);
+//                pStmt.setString(1, USER_ID);
 //                rs = pStmt.executeQuery();
 //
 //                if (rs.next()) {
@@ -232,6 +226,8 @@
 //            }
 //            return isName;
 //        }
+
+//          //???
 //        public String inputID() {
 //            String id;
 //            while (true){
