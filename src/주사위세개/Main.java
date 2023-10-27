@@ -8,23 +8,41 @@ public class Main {
         int a= sc.nextInt();
         int b = sc.nextInt();
         int c = sc.nextInt();
-        ArrayList<Integer> arr = new ArrayList<>();
-        arr.add(a);
-        arr.add(b);
-        arr.add(c);
+        int [] arr = new int[3];
+        arr[0] = a;
+        arr[1] = b;
+        arr[2] = c;
+        int max = 0;
 
-        for (int i = 0; i < 3; i++) {
-            if (arr.get(i) > )
-        }
+        int total;
+            if (a == b && a == c) {
+                total = 10000 + 1000*a;
+            } else if (a != b && a!= c && b != c) {
+                for (int i = 0; i < 3; i++) {
+                    if (arr[i] > max) {
+                        max = arr[i];
+                    }
+                    total = max * 100;
+                }
 
-
-
-        int total = 0;
-        if (a == b && a == c) {
-            total = 10000 + 1000*a;
-        } else if (a != b && a!= c && b != c) {
-            total =
+            }
+                else
+            {
+                    // 3개의 변수가 모두 같은 경우
+                    if (a == b && a == c) {
+                        System.out.println(10000 + a * 1000);
+                    } else {
+                        // a가 b혹은 c랑만 같은 경우
+                        if (a == b || a == c) {
+                            System.out.println(1000 + a * 100);
+                        }
+                        // b가 c랑 같은 경우
+                        else {
+                            System.out.println(1000 + b * 100);
+                        }
+                    }
+                }
         }
 
     }
-}
+
